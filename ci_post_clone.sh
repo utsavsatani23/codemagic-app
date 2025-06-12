@@ -1,13 +1,16 @@
 #!/bin/sh
-
-# Exit immediately if a command exits with a non-zero status
+# Exit if any command fails
 set -e
 
-echo "Running flutter pub get and prebuild steps..."
+echo "🔥 Running Flutter setup"
+
+# Set Flutter to correct version (if using fvm or specific)
+flutter --version
+
+# Install dependencies
 flutter pub get
 
-# Optional: Run iOS build to generate xcconfig files
+# Generate iOS required files (like Generated.xcconfig)
 flutter build ios --no-codesign
 
-echo "ci_post_clone.sh finished"
-chmod +x ci_post_clone.sh
+echo "✅ Flutter iOS prebuild completed"
